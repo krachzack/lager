@@ -4,7 +4,7 @@ authors "Philipp Stadler <hello@phstadler.com>"
 homepage "https://github.com/krachzack/lager"
 license "MIT"
 # Currently pils is in a git submodule, this will change later on when the pils
-# API stabilizes
+# API stabilizes, then it will be added as a normal dependency
 sourcePaths "source" "pils/source"
 dependency "darg" version="~>0.0.4"
 targetType "executable"
