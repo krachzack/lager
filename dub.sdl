@@ -1,0 +1,11 @@
+name "lager"
+description "Command line tool for procedural interior placement using pils."
+authors "Philipp Stadler <hello@phstadler.com>"
+homepage "https://github.com/krachzack/lager"
+license "MIT"
+# Currently pils is in a git submodule, this will change later on when the pils
+# API stabilizes
+sourcePaths "source" "pils/source"
+dependency "darg" version="~>0.0.4"
+targetType "executable"
+targetPath "build"
