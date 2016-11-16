@@ -1,2 +1,8 @@
 #!/bin/bash
-dub -- examples/config.yaml out.json
+
+nodemon --exec "dub -- examples/config.yaml out.json" \
+        --watch "pils" \
+        --watch "source" \
+        --watch "examples" \
+        --watch "dub.sdl" \
+        --watch "run"
