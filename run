@@ -1,6 +1,7 @@
 #!/bin/bash
 
 nodemon --exec "dub -- examples/config.yaml out.json" \
+        --ext "d,sdl,yaml,json" \
         --watch "pils" \
         --watch "source" \
         --watch "examples" \
