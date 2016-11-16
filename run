@@ -1,0 +1,2 @@
+#!/bin/bash
+dub -- examples/config.yaml out.json
