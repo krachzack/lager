@@ -1,12 +1,19 @@
+/++
+ + Contains command line interface functionality and the main function.
+ +/
 module lager.cli;
 
-import std.stdio;
-import std.datetime;
-import std.file;
-import std.string;
+private
+{
+    import std.stdio : writeln, writefln, stderr ;
+    import std.datetime;
+    import std.file;
+    import std.string;
 
-import pils.config;
-import darg;
+    import pils.config;
+    import pils.planner;
+    import darg;
+}
 
 struct CliOptions
 {
@@ -23,14 +30,20 @@ struct CliOptions
     string targetFilePath;
 }
 
-struct Cli
+class Cli
 {
 private:
     CliOptions options;
+    Planner planner;
     enum usage = usageString!CliOptions("lager");
     enum help = helpString!CliOptions;
 
 public:
+    this()
+    {
+        planner = new Planner();
+    }
+
     int run(string[] args)
     {
         int exitCode = 1;
@@ -52,7 +65,7 @@ public:
             // Help was requested
             writefln("lager %s", pilsVersion);
             writeln(usage);
-            write(help);
+            writeln(help);
             exitCode = 0;
         }
         catch(Exception e)
@@ -87,7 +100,7 @@ public:
 
         auto msecDuration = sw.peek().msecs();
 
-        writefln("🍺  Placed %s objects in %sms", 911, msecDuration);
+        writefln("🍺  Placed %s objects in %sms 🍺 ", 911, msecDuration);
     }
 
     void explain()
@@ -103,13 +116,14 @@ public:
 
     void writeLayout()
     {
-
+        string layoutJson = planner.layout.json;
+        options.targetFilePath.write(layoutJson);
     }
 }
 
 int main(string[] args)
 {
-    Cli cli;
+    Cli cli = new Cli();
     return cli.run(args);
 }
 
