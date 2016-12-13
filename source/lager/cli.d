@@ -21,9 +21,9 @@ struct CliOptions
     @Help("Prints this help.")
     OptionFlag help;
 
-    @Argument("config_file")
-    @Help("The configuration file in YAML format")
-    string configFilePath;
+    @Argument("library_path")
+    @Help("Path to the entity library to use for placement")
+    string entityLibraryPath;
 
     @Argument("target_file")
     @Help("The target file to write the room layout to")
@@ -39,11 +39,6 @@ private:
     enum help = helpString!CliOptions;
 
 public:
-    this()
-    {
-        planner = new Planner();
-    }
-
     int run(string[] args)
     {
         int exitCode = 1;
@@ -77,9 +72,9 @@ public:
     }
 
     void validateOptionValues() {
-        if(!exists(options.configFilePath)) {
-            auto msg = format("Specified config file \"%s\" does not exist",
-                              options.configFilePath);
+        if(!exists(options.entityLibraryPath)) {
+            auto msg = format("Specified entity library path \"%s\" does not exist",
+                              options.entityLibraryPath);
 
             throw new CliOptionException(msg);
         }
@@ -90,7 +85,8 @@ public:
 
         sw.start();
 
-        writefln("Solving layout using config file %s", options.configFilePath);
+        writefln("Solving layout with entity library %s", options.entityLibraryPath);
+        initPlanner();
         solveLayout();
 
         writefln("Written layout to target file %s", options.targetFilePath);
@@ -100,7 +96,7 @@ public:
 
         auto msecDuration = sw.peek().msecs();
 
-        writefln("🍺  Placed %s objects in %sms 🍺 ", 911, msecDuration);
+        writefln("🍺  Placed %s objects in %sms 🍺 ", planner.layout.entities.length, msecDuration);
     }
 
     void explain()
@@ -109,9 +105,15 @@ public:
         writefln("usage: lager config_file target_file");
     }
 
+    void initPlanner()
+    {
+        auto lib = new EntityLibrary(options.entityLibraryPath);
+        planner = new Planner(lib);
+    }
+
     void solveLayout()
     {
-
+        planner.planLivingroom();
     }
 
     void writeLayout()
