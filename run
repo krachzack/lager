@@ -2,7 +2,7 @@
 
 nodemon --exec "sh -c 'dub --build=debug -- examples/classlibs/krachzack ~/out.json; :'" \
         --ext "d,sdl,yaml,json" \
-        --watch "pils" \
+        --watch "../pils" \
         --watch "source" \
         --watch "examples" \
         --watch "dub.sdl" \
