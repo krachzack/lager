@@ -2,12 +2,19 @@ name "lager"
 description "Command line tool for procedural interior placement using pils."
 authors "Philipp Stadler <hello@phstadler.com>"
 homepage "https://github.com/krachzack/lager"
-license "MIT"
+license "UNLICENSE"
+mainSourceFile "source/lager/cli.d"
 # Currently pils is in a git submodule, this will change later on when the pils
 # API stabilizes, then it will be added as a normal dependency
 sourcePaths "source" "pils/source"
-dependency "gl3n" version="~>1.3.0"
+dependency "gfm:math" version="~>6.2"
 dependency "darg" version="~>0.0.4"
 dependency "painlessjson" version="~>1.3.7"
 targetType "executable"
 targetPath "build"
+
+buildType "debug" {
+	buildOptions "unittests" "debugMode" "debugInfo" "alwaysStackFrame"
+	lflags "-L/Users/phil/Development/gpc232-release"
+	libs "gpc.o"
+}
