@@ -1,3 +1,0 @@
-[submodule "pils"]
-	path = pils
-	fetchrecursesubmodules = true

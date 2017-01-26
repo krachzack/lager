@@ -4,12 +4,11 @@ authors "Philipp Stadler <hello@phstadler.com>"
 homepage "https://github.com/krachzack/lager"
 license "UNLICENSE"
 mainSourceFile "source/lager/cli.d"
-# Currently pils is in a git submodule, this will change later on when the pils
-# API stabilizes, then it will be added as a normal dependency
-sourcePaths "source" "pils/source"
 dependency "gfm:math" version="~>6.2"
 dependency "darg" version="~>0.0.4"
 dependency "painlessjson" version="~>1.3.7"
+# Expects pils to be in a neighbouring directory
+dependency "pils" version="*" path="../pils"
 targetType "executable"
 targetPath "build"
 
