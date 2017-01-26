@@ -1,0 +1,154 @@
+{
+	"meta": {
+		"id": "krachzack.loneroom",
+		"name": "Lone Room",
+		"tags": [
+			"room",
+			"base"
+		],
+		"description": "An empty room intended for use in starting layouts"
+	},
+	"placements": [
+		{
+			"name": "floor",
+			"mesh": "floor1x1.obj",
+			"pose": {
+				"scale": [8, 1, 5]
+			}
+		}
+	],
+	"features": [
+		{
+			"name": "WestWall",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits",
+				"Wall"
+			],
+			"vertices":
+            [
+				[
+					[
+						-3.9,
+						2.4
+					],
+					[
+						-3.9,
+						-2.4
+					]
+				]
+			]
+		},
+		{
+			"name": "SouthWall",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits",
+				"Wall"
+			],
+			"vertices":
+            [
+				[
+					[
+						-3.9,
+						-2.4
+					],
+					[
+						3.9,
+						-2.4
+					]
+				]
+			]
+		},
+		{
+			"name": "EastWall",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits",
+				"Wall"
+			],
+			"vertices":
+            [
+				[
+					[
+						3.9,
+						2.4
+					],
+					[
+						3.9,
+						-2.4
+					]
+				]
+			]
+		},
+		{
+			"name": "NorthWall",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits",
+				"Wall"
+			],
+			"vertices":
+            [
+				[
+					[
+						-3.9,
+						2.4
+					],
+					[
+						3.9,
+						2.4
+					]
+				]
+			]
+		},
+		{
+			"name": "Floor",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"Ground"
+			],
+			"vertices":
+            [
+                [
+					[
+						-3.9,
+						-2.4
+					],
+					[
+						3.9,
+						-2.4
+					],
+					[
+						3.9,
+						2.4
+					],
+					[
+						-3.9,
+						2.4
+					]
+    			]
+            ]
+		}
+	]
+}

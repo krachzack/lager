@@ -1,0 +1,91 @@
+{
+	"meta": {
+		"id": "krachzack.mandal",
+		"name": "Mandal",
+		"tags": [
+			"bed",
+			"large"
+		],
+		"description": "Some cheap two-person bed",
+		"authors": [
+			"\"Parsing IKEA Objects: Fine Pose Estimation.\" Joseph J. Lim, Hamed Pirsiavash, Antonio Torralba. ICCV 2013., http://people.csail.mit.edu/lim/paper/lpt_iccv2013.pdf)"
+		]
+	},
+	"placements": [
+		{
+			"name": "mandal",
+			"mesh": "mandal.obj",
+			"pose": {
+				"orientation": [0, 0, 0, 1],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			}
+		}
+	],
+	"features": [
+		{
+			"name": "Physical",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits"
+			],
+			"vertices":
+            [
+                [
+    				[
+    					-0.7,
+    					-1.01
+    				],
+    				[
+    					0.7,
+    					-1.01
+    				],
+    				[
+    					0.7,
+    					1.01
+    				],
+    				[
+    					-0.7,
+    					1.01
+    				]
+                ]
+			]
+		},
+		{
+			"name": "ClearanceAroundBed",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"Clearance"
+			],
+			"vertices":
+            [
+                [
+					[
+    					-0.8,
+    					-1.11
+    				],
+    				[
+    					0.8,
+    					-1.11
+    				],
+    				[
+    					0.8,
+    					1.11
+    				],
+    				[
+    					-0.8,
+    					1.11
+    				]
+                ]
+			]
+		}
+	]
+}

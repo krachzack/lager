@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"id": "krachzack.tofteryd",
+		"name": "Tofteryd",
+		"tags": [
+			"table",
+			"coffee table",
+			"living room",
+			"large"
+		],
+		"description": "Rather big coffee table that looks good with some larger sofas",
+		"authors": [
+			"\"Parsing IKEA Objects: Fine Pose Estimation.\" Joseph J. Lim, Hamed Pirsiavash, Antonio Torralba. ICCV 2013., http://people.csail.mit.edu/lim/paper/lpt_iccv2013.pdf)"
+		]
+	},
+	"placements": [
+		{
+			"name": "tofteryd",
+			"mesh": "tofteryd.obj",
+			"pose": {
+				"orientation": [0, 0, 0, 1],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			}
+		}
+	],
+	"features": [
+		{
+			"name": "Physical",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits"
+			],
+			"vertices":
+            [
+                [
+    				[
+    					-0.475,
+    					-0.475
+    				],
+    				[
+    					0.475,
+    					-0.475
+    				],
+    				[
+    					0.475,
+    					0.475
+    				],
+    				[
+    					-0.475,
+    					0.475
+    				]
+                ]
+			]
+		},
+		{
+			"name": "ClearanceAroundTable",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"Clearance"
+			],
+			"vertices":
+            [
+                [
+    				[
+    					-0.975,
+    					-0.975
+    				],
+    				[
+    					0.975,
+    					-0.975
+    				],
+    				[
+    					0.975,
+    					0.975
+    				],
+    				[
+    					-0.975,
+    					0.975
+    				]
+                ]
+			]
+		}
+	]
+}
