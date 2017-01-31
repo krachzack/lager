@@ -72,14 +72,7 @@ public:
         return exitCode;
     }
 
-    void validateOptionValues() {
-        if(!exists(options.entityLibraryPath)) {
-            auto msg = format("Specified entity library path \"%s\" does not exist",
-                              options.entityLibraryPath);
-
-            throw new CliOptionException(msg);
-        }
-    }
+    void validateOptionValues() {}
 
     void generate() {
         StopWatch sw;
