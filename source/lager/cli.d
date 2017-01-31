@@ -89,8 +89,6 @@ public:
         stderr.writefln("Solving layout with entity library %s", options.entityLibraryPath);
         initPlanner();
         solveLayout();
-
-        stderr.writefln("Written layout to target file %s", options.targetFilePath);
         writeLayout();
 
         sw.stop();
@@ -130,6 +128,7 @@ public:
         if(options.targetFilePath !is null)
         {
             options.targetFilePath.write(layoutJson);
+            stderr.writefln("Written layout to target file %s", options.targetFilePath);
         }
         else
         {
