@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"id": "dustsucker.couch",
+		"name": "Couch",
+		"tags": [
+			"couch",
+			"sofa",
+			"sitting",
+			"livingroom"
+		],
+		"description": "Leather couch",
+		"authors": [
+			"Parzival42/VACC"
+		]
+	},
+	"placements": [
+		{
+			"name": "couch",
+			"mesh": "couch.FBX",
+			"pose": {
+				"orientation": [0, 0, 0, 1],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			}
+		}
+	],
+	"features": [
+		{
+			"name": "Physical",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"OffLimits"
+			],
+			"vertices":
+            [
+                [
+    				[
+    					-1.03007,
+    					-0.43268,
+    				],
+					[
+    					1.02421,
+    					-0.43268,
+    				],
+					[
+    					1.02421,
+    					0.4415,
+    				],
+					[
+    					-1.03007,
+    					0.4415,
+    				]
+                ]
+			]
+		},
+		{
+			"name": "ClearanceAroundCouch",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0]
+			},
+			"tags": [
+				"Clearance"
+			],
+			"vertices":
+			[
+				[
+    				[
+    					-1.03007,
+    					-0.73268,
+    				],
+					[
+    					1.02421,
+    					-0.73268,
+    				],
+					[
+    					1.02421,
+    					0.4415,
+    				],
+					[
+    					-1.03007,
+    					0.4415,
+    				]
+                ]
+			]
+		}
+	]
+}
