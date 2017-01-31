@@ -3,9 +3,9 @@
 		"id": "dustsucker.room",
 		"name": "Living Room",
 		"tags": [
-			"livingroom",
-			"room",
-			"startlayout"
+			"Livingroom",
+			"Room",
+			"Startlayout"
 		],
 		"description": "Crudely modelled living room",
 		"authors": [

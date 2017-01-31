@@ -3,10 +3,8 @@
 		"id": "dustsucker.couch",
 		"name": "Couch",
 		"tags": [
-			"couch",
-			"sofa",
-			"sitting",
-			"livingroom"
+			"Sitting",
+			"Livingroom"
 		],
 		"description": "Leather couch",
 		"authors": [
