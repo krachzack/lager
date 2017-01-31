@@ -26,8 +26,8 @@ struct CliOptions
     @Help("Path to the entity library to use for placement")
     string entityLibraryPath;
 
-    @Argument("target_file")
-    @Help("The target file to write the room layout to")
+    @Option("out", "o")
+    @Help("The target file to write the room layout to. Uses stdout if omitted")
     string targetFilePath;
 }
 
@@ -59,9 +59,9 @@ public:
         catch(ArgParseHelp e)
         {
             // Help was requested
-            writefln("lager %s", pilsVersion);
-            writeln(usage);
-            writeln(help);
+            stderr.writefln("lager %s", pilsVersion);
+            stderr.writeln(usage);
+            stderr.writeln(help);
             exitCode = 0;
         }
         catch(Exception e)
@@ -72,38 +72,29 @@ public:
         return exitCode;
     }
 
-    void validateOptionValues() {
-        if(!exists(options.entityLibraryPath)) {
-            auto msg = format("Specified entity library path \"%s\" does not exist",
-                              options.entityLibraryPath);
-
-            throw new CliOptionException(msg);
-        }
-    }
+    void validateOptionValues() {}
 
     void generate() {
         StopWatch sw;
 
         sw.start();
 
-        writefln("Solving layout with entity library %s", options.entityLibraryPath);
+        stderr.writefln("Solving layout with entity library %s", options.entityLibraryPath);
         initPlanner();
         solveLayout();
-
-        writefln("Written layout to target file %s", options.targetFilePath);
         writeLayout();
 
         sw.stop();
 
         auto msecDuration = sw.peek().msecs();
 
-        writefln("🍺  Placed %s objects in %sms 🍺 ", planner.layout.entities.length, msecDuration);
+        stderr.writefln("🍺  Placed %s objects in %sms 🍺 ", planner.layout.entities.length, msecDuration);
     }
 
     void explain()
     {
-        writefln("pint %s", pilsVersion);
-        writefln("usage: lager config_file target_file");
+        stderr.writefln("lager %s", pilsVersion);
+        stderr.writefln("usage: lager config_file target_file");
     }
 
     void initPlanner()
@@ -126,7 +117,17 @@ public:
     void writeLayout()
     {
         string layoutJson = planner.layout.json;
-        options.targetFilePath.write(layoutJson);
+
+        if(options.targetFilePath !is null)
+        {
+            options.targetFilePath.write(layoutJson);
+            stderr.writefln("Written layout to target file %s", options.targetFilePath);
+        }
+        else
+        {
+            // Write to stdout if no output file specified
+            writeln(layoutJson);
+        }
     }
 }
 
