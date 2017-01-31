@@ -1,0 +1,55 @@
+[
+    { "do": "instantiate", "with": { "id": "dustsucker.room", "position": [0, 0, 0] } },
+    {
+        "do": "place",
+        "with": {
+            "id": "dustsucker.couch",
+            "count": 3,
+            "ground": {
+                "tag": "Ground"
+            },
+            "constraints": [
+                {
+                    "constrain": "rotation",
+                    "with": {
+                        "randomize": "y",
+                        "discrete": 8
+                    }
+                },
+                {
+                    "constrain": "proximity",
+                    "with": {
+                        "tag": "Wall",
+                        "min": 0,
+                        "max": 0.1
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "do": "place",
+        "with": {
+            "id": "dustsucker.tv",
+            "ground": {
+                "tag": "Ground"
+            },
+            "constraints": [
+                {
+                    "constrain": "facing",
+                    "with": {
+                        "tag": "Sitting"
+                    }
+                },
+                {
+                    "constrain": "proximity",
+                    "with": {
+                        "tag": "Sitting",
+                        "min": 2.0,
+                        "max": 4.5
+                    }
+                }
+            ]
+        }
+    }
+]
