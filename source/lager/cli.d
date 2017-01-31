@@ -9,6 +9,7 @@ private
     import std.datetime;
     import std.file;
     import std.string;
+    import std.exception : enforce;
 
     import pils.config;
     import pils.planner;
@@ -109,11 +110,17 @@ public:
     {
         auto lib = new EntityLibrary(options.entityLibraryPath);
         planner = new Planner(lib);
+
+        // Add starting layout
+        planner.instantiate("dustsucker.room", vec3d(0,0,0));
     }
 
     void solveLayout()
     {
-        planner.planLivingroom();
+        // Add 2 couches
+        planner.place("dustsucker.couch", "Ground", 30);
+        // And 5 TVs
+        planner.place("dustsucker.tv", "Ground", 70);
     }
 
     void writeLayout()
