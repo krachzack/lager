@@ -1,6 +1,6 @@
 {
 	"meta": {
-		"id": "dustsucker.livingroom",
+		"id": "dustsucker.room",
 		"name": "Living Room",
 		"tags": [
 			"livingroom",
@@ -200,6 +200,39 @@
 					[
 						8.47134,
 						5.21457
+					]
+				]
+			]
+		},
+		{
+			"name": "Wall4",
+			"pose": {
+				"orientation": [0.707, 0, 0, 0.707],
+				"scale": [1, 1, 1],
+				"position": [0, 0, 0.14371]
+			},
+			"tags": [
+				"OffLimits",
+				"Wall"
+			],
+			"vertices":
+            [
+				[
+					[
+						-8.37101,
+						3.29103
+					],
+					[
+						6.43347,
+						9.16245
+					],
+					[
+						6.24914,
+						9.62724
+					],
+					[
+						-8.55534,
+						3.75581
 					]
 				]
 			]
