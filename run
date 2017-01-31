@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nodemon --exec "sh -c 'dub --build=debug -- examples/classlibs/krachzack ~/out.json; :'" \
+nodemon --exec "sh -c 'dub --build=debug -- examples/classlibs/dustsucker ~/out.json; :'" \
         --ext "d,sdl,yaml,json" \
         --watch "../pils" \
         --watch "source" \
