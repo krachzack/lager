@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nodemon --exec "sh -c 'dub --build=debug -- examples/classlibs/dustsucker -o sampleout.json; :'" \
+nodemon --exec "sh -c 'dub --build=debug -- dustsucker -o sampleout.json; :'" \
         --ext "d,sdl,yaml,json" \
         --watch "../pils" \
         --watch "source" \
