@@ -22,9 +22,9 @@ struct CliOptions
     @Help("Prints this help.")
     OptionFlag help;
 
-    @Argument("library_path")
-    @Help("Path to the entity library to use for placement")
-    string entityLibraryPath;
+    @Argument("catalog_path")
+    @Help("Global catalog name or a path to a catalog directory to use for placement")
+    string catalogPath;
 
     @Option("out", "o")
     @Help("The target file to write the room layout to. Uses stdout if omitted")
@@ -79,7 +79,7 @@ public:
 
         sw.start();
 
-        stderr.writefln("Solving layout with entity library %s", options.entityLibraryPath);
+        stderr.writefln("Solving layout with entity library %s", options.catalogPath);
         initPlanner();
         solveLayout();
         writeLayout();
@@ -99,7 +99,7 @@ public:
 
     void initPlanner()
     {
-        auto lib = new EntityLibrary(options.entityLibraryPath);
+        auto lib = new Catalog(options.catalogPath);
         planner = new Planner(lib);
 
         // Add starting layout
