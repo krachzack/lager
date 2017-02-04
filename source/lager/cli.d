@@ -12,7 +12,7 @@ private
     import std.exception : enforce;
 
     import pils.config;
-    import pils.planner;
+    import pils.solving;
     import darg;
 }
 
