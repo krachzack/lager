@@ -5,7 +5,7 @@
         "with": {
             "id": "dustsucker.couch",
             "count": 3,
-            "ground": {
+            "habitat": {
                 "tag": "Ground"
             },
             "constraints": [
@@ -31,7 +31,7 @@
         "do": "place",
         "with": {
             "id": "dustsucker.tv",
-            "ground": {
+            "habitat": {
                 "tag": "Ground"
             },
             "constraints": [
