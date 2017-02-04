@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# The sh thing ensures the exit code is always 0 and error exit codes do not
+# kill nodemon
 nodemon --exec "sh -c 'dub --build=debug -- dustsucker -o sampleout.json; :'" \
         --ext "d,sdl,yaml,json" \
         --watch "../pils" \
