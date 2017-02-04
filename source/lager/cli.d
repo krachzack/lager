@@ -109,9 +109,9 @@ public:
     void solveLayout()
     {
         // Add 2 couches
-        planner.place("dustsucker.couch", "Ground", 30);
+        planner.place("dustsucker.couch", "Ground", 4);
         // And 5 TVs
-        planner.place("dustsucker.tv", "Ground", 70);
+        planner.place("dustsucker.tv", "Ground", 2);
     }
 
     void writeLayout()
