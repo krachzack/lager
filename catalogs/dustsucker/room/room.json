@@ -19,7 +19,7 @@
 			"pose": {
 				"orientation": [0, 0, 0, 1],
 				"scale": [1, 1, 1],
-				"position": [0, 0, 0]
+				"position": [0, 0.14, 0]
 			}
 		}
 	],
@@ -29,7 +29,7 @@
 			"pose": {
 				"orientation": [-0.707107, 0, 0, 0.707107],
 				"scale": [1, 1, 1],
-				"position": [0, 0, 0.0]
+				"position": [0, 0, 0]
 			},
 			"tags": [
 				"Ground"
