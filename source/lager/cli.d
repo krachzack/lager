@@ -10,10 +10,12 @@ private
     import std.file;
     import std.string;
     import std.exception : enforce;
+    import std.json;
 
     import pils.config;
     import pils.solving;
     import darg;
+    import painlessjson;
 }
 
 struct CliOptions
@@ -23,11 +25,15 @@ struct CliOptions
     OptionFlag help;
 
     @Argument("catalog_path")
-    @Help("Global catalog name or a path to a catalog directory to use for placement")
+    @Help("Global catalog name or a path to a catalog directory to use for placement.")
     string catalogPath;
 
+    @Option("in", "i")
+    @Help("The file to read placement instructions in JSON format from. Uses stdin if omitted.")
+    string procedureFilePath;
+
     @Option("out", "o")
-    @Help("The target file to write the room layout to. Uses stdout if omitted")
+    @Help("The target file to write the room layout to. Uses stdout if omitted.")
     string targetFilePath;
 }
 
@@ -99,19 +105,25 @@ public:
 
     void initPlanner()
     {
+        // Initialize planner and catalog with global options
         auto lib = new Catalog(options.catalogPath);
         planner = new Planner(lib);
-
-        // Add starting layout
-        planner.instantiate("dustsucker.room", vec3d(0,0,0));
     }
 
     void solveLayout()
     {
-        // Add 2 couches
-        planner.place("dustsucker.couch", "Ground", 4);
-        // And 5 TVs
-        planner.place("dustsucker.tv", "Ground", 2);
+        if(options.procedureFilePath.empty)
+        {
+            // TODO If no input path, for now just perform test placements,
+            // in the future should read from stdin
+            stderr.writeln("WARNING: JSON reading from stdin is unsupported as of now, supply a --in file instead for now, will use livingroom.json for testing instead");
+            options.procedureFilePath = "/Users/phil/Development/lager/examples/procedures/livingroom.json";
+        }
+
+        stderr.writefln("Reading layout procedure from %s", options.procedureFilePath);
+        auto jsonSource = options.procedureFilePath.readText();
+        auto steps = fromJSON!(PlanningStep[])(parseJSON(jsonSource));
+        planner.submit(steps);
     }
 
     void writeLayout()
