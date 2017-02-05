@@ -6,7 +6,7 @@ it for offline generation of room layouts or integrate it for use at runtime in 
     Usage: lager [--help] [--in=<string>] [--out=<string>] catalog_path
 
     Positional arguments:
-    catalog_path    Global catalog name or a path to a c˘atalog directory to use for placement.
+    catalog_path    Global catalog name or a path to a catalog directory to use for placement.
 
     Optional arguments:
     --help, -h      Prints this help.
