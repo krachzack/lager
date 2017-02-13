@@ -24,6 +24,14 @@ struct CliOptions
     @Help("Prints this help.")
     OptionFlag help;
 
+    @Option("verbose", "v")
+    @Help("Report additional information about the generation process through stderr.")
+    OptionFlag verbose;
+
+    @Option("debug-placements")
+    @Help("Instead of reading from either the file provided with --in or from standard input, perform a set of implementation defined debug placements, relying on the user selecting the dustsucker library.")
+    OptionFlag debugPlacements;
+
     @Argument("catalog_path")
     @Help("Global catalog name or a path to a catalog directory to use for placement.")
     string catalogPath;
@@ -53,21 +61,18 @@ public:
         try
         {
             options = parseArgs!CliOptions(args[1 .. $]);
-            validateOptionValues();
             generate();
             exitCode = 0;
         }
         catch(ArgParseError e)
         {
-            writeln(usage);
-            stderr.writeln(e.msg);
+            stderr.writeln(usage);
+            stderr.writefln("ERROR: %s", e.msg);
         }
         catch(ArgParseHelp e)
         {
             // Help was requested
-            stderr.writefln("lager %s", pilsVersion);
-            stderr.writeln(usage);
-            stderr.writeln(help);
+            explain();
             exitCode = 0;
         }
         catch(Exception e)
@@ -78,14 +83,24 @@ public:
         return exitCode;
     }
 
-    void validateOptionValues() {}
+    void explain()
+    {
+        stderr.writefln("lager %s", pilsVersion);
+        stderr.writeln(usage);
+        stderr.writeln(help);
+    }
 
-    void generate() {
+    void generate()
+    {
         StopWatch sw;
 
         sw.start();
 
-        stderr.writefln("Solving layout with entity library %s", options.catalogPath);
+        if(options.verbose)
+        {
+            stderr.writefln("Solving layout with entity library %s", options.catalogPath);
+        }
+
         initPlanner();
         solveLayout();
         writeLayout();
@@ -94,13 +109,10 @@ public:
 
         auto msecDuration = sw.peek().msecs();
 
-        stderr.writefln("🍺  Placed %s objects in %sms 🍺 ", planner.layout.entities.length, msecDuration);
-    }
-
-    void explain()
-    {
-        stderr.writefln("lager %s", pilsVersion);
-        stderr.writefln("usage: lager config_file target_file");
+        if(options.verbose)
+        {
+            stderr.writefln("🍺  Placed %s objects in %sms 🍺 ", planner.layout.entities.length, msecDuration);
+        }
     }
 
     void initPlanner()
@@ -112,18 +124,28 @@ public:
 
     void solveLayout()
     {
-        if(options.procedureFilePath.empty)
+        if(options.debugPlacements)
         {
-            // TODO If no input path, for now just perform test placements,
-            // in the future should read from stdin
-            stderr.writeln("WARNING: JSON reading from stdin is unsupported as of now, supply a --in file instead for now, will use livingroom.json for testing instead");
+            stderr.writeln("DEBUG: Trying to read from /Users/phil/Development/lager/examples/procedures/livingroom.json " ~
+                           "in response to --debug-placements");
             options.procedureFilePath = "/Users/phil/Development/lager/examples/procedures/livingroom.json";
         }
 
-        stderr.writefln("Reading layout procedure from %s", options.procedureFilePath);
-        auto jsonSource = options.procedureFilePath.readText();
-        auto steps = fromJSON!(PlanningStep[])(parseJSON(jsonSource));
-        planner.submit(steps);
+        if(options.procedureFilePath.empty)
+        {
+            enforce(false, "Sorry, reading from standard input is unsupported as of yet");
+        }
+        else
+        {
+            if(options.verbose)
+            {
+                stderr.writefln("Reading layout procedure from %s", options.procedureFilePath);
+            }
+
+            auto jsonSource = options.procedureFilePath.readText();
+            auto steps = fromJSON!(PlanningStep[])(parseJSON(jsonSource));
+            planner.submit(steps);
+        }
     }
 
     void writeLayout()
@@ -133,7 +155,10 @@ public:
         if(options.targetFilePath !is null)
         {
             options.targetFilePath.write(layoutJson);
-            stderr.writefln("Written layout to target file %s", options.targetFilePath);
+            if(options.verbose)
+            {
+                stderr.writefln("Written layout to target file %s", options.targetFilePath);
+            }
         }
         else
         {
@@ -149,8 +174,10 @@ int main(string[] args)
     return cli.run(args);
 }
 
-class CliOptionException : Exception {
-    this(string msg, string file = __FILE__, size_t line = __LINE__) {
+class CliOptionException : Exception
+{
+    this(string msg, string file = __FILE__, size_t line = __LINE__)
+    {
         super(msg, file, line);
     }
 }
